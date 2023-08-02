@@ -1,34 +1,31 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.entity.MessageEntity;
-import com.example.springboot.repository.MessageRepository;
-import org.springframework.http.HttpHeaders;
+import com.example.springboot.service.ChatService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/messages")
+@RequestMapping("/api/messages")
 public class MessageController {
 
-    private final MessageRepository repo;
+    private final ChatService chatService;
 
-    public MessageController(MessageRepository messageRepository){
-        repo = messageRepository;
-    }
-    @PostMapping("/message")
-    public MessageEntity addMessage(@RequestBody MessageEntity message) {
-        repo.save(message);
-        return repo.save(message);
+    public MessageController(ChatService messageService) {
+        this.chatService = messageService;
     }
 
-
-    @GetMapping("/message")
-    List<MessageEntity> getMessages() {
-        return repo.findAll();
+    @PostMapping()
+    public ResponseEntity<MessageEntity> sendMessage(@RequestBody MessageEntity message) {
+        MessageEntity sentMessage = chatService.sendMessage(message);
+        return ResponseEntity.ok(sentMessage);
     }
-
-
-
-
+    @GetMapping()
+    public ResponseEntity<List<MessageEntity>> getChatRoomMessages() {
+        List<MessageEntity> chatRoomMessages = chatService.getAllMessages();
+        return ResponseEntity.ok(chatRoomMessages);
+    }
 }
+
