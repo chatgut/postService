@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  web:
+    image: spring_boot:latest
+    ports:
+      - "80:80"
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: developer_password
