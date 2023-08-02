@@ -1,4 +1,4 @@
-FROM maven:3.9.0-eclipse-temurin-19 as builder
+FROM maven:3.9.0-eclipse-temurin-20 as builder
 COPY src /app/src
 COPY pom.xml /app
 RUN mvn --file /app/pom.xml clean package
