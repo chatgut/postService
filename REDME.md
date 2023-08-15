@@ -1,7 +1,6 @@
 
 
-docker build -t spring_boot_image  .
+docker pull wassimtajeddin/labb2:latest
 
-docker run -d --name spring_boot -p 8080:8080 spring-boot
 
 docker-compose up

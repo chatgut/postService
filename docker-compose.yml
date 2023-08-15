@@ -7,6 +7,9 @@ services:
   data_base:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: developer_password
+      MYSQL_ROOT_PASSWORD: secret-pw
+      MYSQL_DATABASE: demo
+      MYSQL_USER: developer
+      MYSQL_PASSWORD: password
     ports:
         - "3306:3306"
